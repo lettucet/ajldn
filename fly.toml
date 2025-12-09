@@ -1,0 +1,22 @@
+# Fly.io app configuration for ajldn
+app = "ajldn-proxy"       # change to your unique app name
+primary_region = "iad"     # choose a region near you
+
+[build]
+  # Leave empty to build from Dockerfile
+  image = ""
+
+[env]
+  NODE_ENV = "production"
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
